@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Opengl on JAKOBS BLOG</title>
+    <link>https://caradhrass.github.io/tags/opengl/</link>
+    <description>Recent content in Opengl on JAKOBS BLOG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>(c) 2018 Jakob Loth</copyright>
+    <lastBuildDate>Fri, 27 Apr 2018 13:24:07 +0200</lastBuildDate>
+    
+	<atom:link href="https://caradhrass.github.io/tags/opengl/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Rendering the Buddhabrot with WebGL</title>
+      <link>https://caradhrass.github.io/post/rendering-a-buddhabrot-with-webgl/</link>
+      <pubDate>Fri, 27 Apr 2018 13:24:07 +0200</pubDate>
+      
+      <guid>https://caradhrass.github.io/post/rendering-a-buddhabrot-with-webgl/</guid>
+      <description>Introduction I finally decided to make my first web application. Since I am a c++ guy I wanted to use this little project to learn js,html etc, so if you encounter some stupid/noobish js usage/style pls let me know so I can improve.
+If you don&amp;rsquo;t know what a Buddhbrot is I will give you a overview: The Buddhabrot is really cool mathematical object which somewhat looks like a Buddha:</description>
+    </item>
+    
+  </channel>
+</rss>
