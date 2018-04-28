@@ -61,7 +61,7 @@
     },
     "datePublished": "2018-04-27",
     "description": "",
-    "wordCount": 1152
+    "wordCount": 1153
   }
 </script>
 
@@ -174,7 +174,7 @@
 
   
   &middot; Read in about 6 min
-  &middot; (1152 Words)
+  &middot; (1153 Words)
   <br>
   
 <a class="label" href="https://caradhrass.github.io/tags/js">js</a>
@@ -302,9 +302,10 @@ The last step is the normalization of the density map this is also done on the G
     <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">attachments</span> <span style="color:#f92672">=</span> [
         {<span style="color:#a6e22e">internalFormat</span><span style="color:#f92672">:</span><span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">R32F</span>, <span style="color:#a6e22e">format</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">RED</span>,<span style="color:#a6e22e">type</span><span style="color:#f92672">:</span><span style="color:#a6e22e">gl</span>.<span style="color:#a6e22e">FLOAT</span>}
     ]
-    <span style="color:#75715e">//pingo framebuffer
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">fb0</span> <span style="color:#f92672">=</span><span style="color:#a6e22e">twgl</span>.<span style="color:#a6e22e">createFramebufferInfo</span>(<span style="color:#a6e22e">gl</span>,<span style="color:#a6e22e">attachments</span>,Math.<span style="color:#a6e22e">ceil</span>(<span style="color:#a6e22e">width</span><span style="color:#960050;background-color:#1e0010">/4.0),Math.ceil(height/4.0)); //Twgl is practical  webGL wrapper</span>
-    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">fb1</span> <span style="color:#f92672">=</span><span style="color:#a6e22e">twgl</span>.<span style="color:#a6e22e">createFramebufferInfo</span>(<span style="color:#a6e22e">gl</span>,<span style="color:#a6e22e">attachments</span>,Math.<span style="color:#a6e22e">ceil</span>(<span style="color:#a6e22e">width</span><span style="color:#960050;background-color:#1e0010">/4.0),Math.ceil(height/4.0));</span>
+    <span style="color:#75715e">//ping pong framebuffer
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">fb0</span> <span style="color:#f92672">=</span><span style="color:#a6e22e">twgl</span>.<span style="color:#a6e22e">createFramebufferInfo</span>(<span style="color:#a6e22e">gl</span>,<span style="color:#a6e22e">attachments</span>,Math.<span style="color:#a6e22e">ceil</span>(<span style="color:#a6e22e">width</span><span style="color:#960050;background-color:#1e0010">/4.0),Math.ceil(height/4.0)); </span>
+    <span style="color:#75715e">//Twgl is practical  WebGL wrapper
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">fb1</span> <span style="color:#f92672">=</span><span style="color:#a6e22e">twgl</span>.<span style="color:#a6e22e">createFramebufferInfo</span>(<span style="color:#a6e22e">gl</span>,<span style="color:#a6e22e">attachments</span>,Math.<span style="color:#a6e22e">ceil</span>(<span style="color:#a6e22e">width</span><span style="color:#960050;background-color:#1e0010">/4.0),Math.ceil(height/4.0));</span>
     <span style="color:#a6e22e">twgl</span>.<span style="color:#a6e22e">bindFramebufferInfo</span>(<span style="color:#a6e22e">gl</span>);
     <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">reductionFs</span> <span style="color:#f92672">=</span> 
     <span style="color:#e6db74">`#version 300 es
