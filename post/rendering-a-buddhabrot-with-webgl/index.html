@@ -51,7 +51,7 @@
     },
     "datePublished": "2018-04-27",
     "description": "",
-    "wordCount": 1065
+    "wordCount": 1064
   }
 </script>
 
@@ -164,7 +164,7 @@
 
   
   &middot; Read in about 5 min
-  &middot; (1065 Words)
+  &middot; (1064 Words)
   <br>
   
 
@@ -178,7 +178,7 @@
 
 <h2 id="introduction">Introduction</h2>
 
-<p>I finally decided to make my first web application. Being a c++ guy I want to use this little project to learn js,html etc,
+<p>I finally decided to make my first web application. Since I am a c++ guy I wanted to use this little project to learn js,html etc,
 so if you encounter some stupid/noobish js usage/style pls let me know so I can improve.</p>
 
 <p>If you don&rsquo;t know  what a Buddhbrot is I will give you a overview:
@@ -189,7 +189,7 @@ The Buddhabrot is really cool mathematical object which somewhat looks like a Bu
 <h3 id="live-demo-https-caradhrass-github-io-webgl-buddhabrot"><a href="https://caradhrass.github.io/WebGL-Buddhabrot/">live demo</a></h3>
 
 <p>To understand how a Buddhabrot is created one must first understand the famous Mandelbrot and the complex dynamic behind it.
-Both have their source in the complex recursive formula  Z₁-&gt;Z₀+C.
+Both have their source in the complex recursive formula  Z₁-&gt;Z₀²+C.
 This harmless looking Formula results in some super complex behavior.
 Each starting point C has a unique orbit of Z values, here is the orbit for c = 0.5i:</p>
 
@@ -199,16 +199,16 @@ Each starting point C has a unique orbit of Z values, here is the orbit for c = 
 maximal length of 2. All orbits which at some point have a Z with |Z|&gt;2 will go off to infinity.
 The Mandelbrot set now is the set of those C values that don&rsquo;t tend to infinity and instead orbit around some fixed point.</p>
 
-<p>The Buddhabrot now isn&rsquo;t a set it&rsquo;s a probability map.
-This map shows the probability for a point being crossed by the orbit of a point that is not in the Mandelbrot set.
-Bright parts have a higher probability of being in the path of a orbit then darker parts.</p>
+<p>The Buddhabrot isn&rsquo;t a set it&rsquo;s a probability map.
+This map shows the probability for a point to be crossed by the orbit of a point that is not in the Mandelbrot set.
+Bright parts have a higher probability of to be in the path of a orbit then darker parts.</p>
 
 <h2 id="implementation">Implementation</h2>
 
 <p>I decided to use WebGL2 because I already know CoreGl and WebCL seems pretty dead. This created some inconveniences like the lack of compute shader and random memory access.</p>
 
 <p>First I used GL&rsquo;s transform feedback to generate some random points outside of the Mandelbrot set. To generate
-random points i first used the famous glsl random one liner:
+random points I initially used the famous glsl random one liner:
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-glsl" data-lang="glsl"> 
 <span style="color:#66d9ef">float</span> rand(<span style="color:#66d9ef">vec2</span> co,<span style="color:#66d9ef">float</span> seed){
     <span style="color:#66d9ef">return</span> fract(sin(dot(co.xy<span style="color:#f92672">*</span>seed ,<span style="color:#66d9ef">vec2</span>(<span style="color:#ae81ff">12.9898</span>,<span style="color:#ae81ff">78.233</span>))) <span style="color:#f92672">*</span> <span style="color:#ae81ff">43758.5453</span>);
@@ -236,7 +236,7 @@ flat <span style="color:#66d9ef">out</span> uint nextSeed;
     nextSeed <span style="color:#f92672">=</span> lseed;
 
 }</code></pre></div>
-To check weather or not a point is inside the set I used a pre rendered Mandelbrot mask texture with all pixels inside the set being black. Then I generated random points as long as the corresponding texture
+To check weather or not a point is inside the set I used a pre rendered Mandelbrot mask texture. Then I generated random points as long as the corresponding texture
 fetch returned 0.
 The mask texture:
 <img src ="/media/mmask.PNG" style= " max-width:100%;height:auto; margin:auto;" ></img>
@@ -258,7 +258,7 @@ Here <code>orbitSampleEnd</code> and <code>orbitSampleBegin</code> are the lower
 }</code></pre></div>
 This removes some precision but also yields a great deal of control and speed. The generated points a written via transform feedback in two different buffers.
 Next the a orbits are drawn and traced as points ,with additive blending to a floating point texture transform feedback to used to
-move the orbits via  Z₁-&gt;Z₀+C. How many iterations this is done controls the level of detail.
+move the orbits via  Z₁-&gt;Z²₀+C. How many iterations this is done controls the level of detail.
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-glsl" data-lang="glsl">layout(location <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)<span style="color:#66d9ef">in</span> <span style="color:#66d9ef">vec2</span> orbitPosition;
 layout(location <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)<span style="color:#66d9ef">in</span> <span style="color:#66d9ef">vec2</span> orbitSource;
 
@@ -342,8 +342,8 @@ Next I modified my orbit generation shader to evaluate a points importance.</p>
     <span style="color:#66d9ef">return</span> bestP;
 }</code></pre></div>
 
-<p>These modifications make rendering almost real time on my GTX 960m on a good desktop GPU it should be.
-GPU usage is also quiet good although I only checked it in Task manager.
+<p>These modifications make rendering almost real time on my GTX 960m on a good desktop GPU it should be realtime without zooming.
+The GPU usage is also quiet good although I only checked it in Task manager.
 To further optimize the whole thing measuring would be a good idea because I am not sure what&rsquo;s the main bottleneck. One good thing to try how ever would be to switch from float to half to reduce memory throughput.</p>
 
 <h2 id="the-js-side-of-things">The Js side of things</h2>
