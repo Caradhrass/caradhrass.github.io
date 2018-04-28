@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts: on JAKOBS BLOG</title>
+    <link>https://caradhrass.github.io/</link>
+    <description>Recent content in Posts: on JAKOBS BLOG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>(c) 2018 Jakob Loth</copyright>
+    <lastBuildDate>Fri, 27 Apr 2018 13:24:07 +0200</lastBuildDate>
+    
+	<atom:link href="https://caradhrass.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Rendering the Buddhabrot with WebGL</title>
+      <link>https://caradhrass.github.io/post/rendering-a-buddhabrot-with-webgl/</link>
+      <pubDate>Fri, 27 Apr 2018 13:24:07 +0200</pubDate>
+      
+      <guid>https://caradhrass.github.io/post/rendering-a-buddhabrot-with-webgl/</guid>
+      <description>Introduction I finally decided to make my first web application. Being a c++ guy I want to use this little project to learn js,html etc, so if you encounter some stupid/noobish js usage/style pls let me know so I can improve.
+If you don&amp;rsquo;t know what a Buddhbrot is I will give you a overview: The Buddhabrot is really cool mathematical object which somewhat looks like a Buddha:</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://caradhrass.github.io/about/</link>
+      <pubDate>Tue, 24 Apr 2018 19:33:37 +0200</pubDate>
+      
+      <guid>https://caradhrass.github.io/about/</guid>
+      <description>Hi my name is Jakob i am from Germany and 20 years old. This my programming/tech blog.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://caradhrass.github.io/media/resources/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://caradhrass.github.io/media/resources/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

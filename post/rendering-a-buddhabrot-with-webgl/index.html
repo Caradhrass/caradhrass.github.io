@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Rendering the Buddhabrot with WebGL  &middot; JAKOBS BLOG</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="description" content="" />
+
+<meta name="keywords" content="">
+
+
+<meta property="og:title" content="Rendering the Buddhabrot with WebGL  &middot; JAKOBS BLOG ">
+<meta property="og:site_name" content="JAKOBS BLOG"/>
+<meta property="og:url" content="https://caradhrass.github.io/post/rendering-a-buddhabrot-with-webgl/" />
+<meta property="og:locale" content="en-us">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content=""/>
+<meta property="og:article:published_time" content="2018-04-27T13:24:07&#43;02:00" />
+<meta property="og:article:modified_time" content="2018-04-27T13:24:07&#43;02:00" />
+
+  
+
+  
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@" />
+<meta name="twitter:title" content="Rendering the Buddhabrot with WebGL" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:url" content="https://caradhrass.github.io/post/rendering-a-buddhabrot-with-webgl/" />
+<meta name="twitter:domain" content="https://caradhrass.github.io/">
+  
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "Rendering the Buddhabrot with WebGL",
+    "author": {
+      "@type": "Person",
+      "name": "http://profiles.google.com/+?rel=author"
+    },
+    "datePublished": "2018-04-27",
+    "description": "",
+    "wordCount": 1113
+  }
+</script>
+
+
+
+<link rel="canonical" href="https://caradhrass.github.io/post/rendering-a-buddhabrot-with-webgl/" />
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://caradhrass.github.io/touch-icon-144-precomposed.png">
+<link href="https://caradhrass.github.io/favicon.png" rel="icon">
+
+<meta name="generator" content="Hugo 0.38.2" />
+
+  
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link href='https://fonts.googleapis.com/css?family=Merriweather:300%7CRaleway%7COpen+Sans' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://caradhrass.github.io/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://caradhrass.github.io/css/style.css">
+<link rel="stylesheet" href="https://caradhrass.github.io/css/highlight/sunburst.css">
+
+  
+  
+</head>
+<body>
+  <main id="main-wrapper" class="container main_wrapper">
+    <header id="main-header" class="container main_header">
+  <div class="container brand">
+  <div class="container title h1-like">
+  <a class="baselink" href="https://caradhrass.github.io/">
+  <div style = 'text-align:center'><div style = 'font-size: 7rem !important;text-decoration: underline overline !important;font-weight: 900 !important; padding:1rem;'> JAKOBS</div>  <div style = 'font-size: 4.5rem; padding-left:1rem; '>Blog</div></div>
+
+
+</a>
+
+</div>
+
+  
+<div class="container topline">
+  
+
+</div>
+
+
+</div>
+
+  <nav class="container nav primary no-print">
+  
+
+
+  
+<a href="https://caradhrass.github.io/about">About</a>
+
+<a href="https://caradhrass.github.io/tags" title="Show list of tags">Tags</a>
+
+
+</nav>
+
+<div class="container nav secondary no-print">
+  
+
+
+<a id="contact-link-github" class="contact_link" href="https://github.com/enten/hugo-boilerplate">
+  <span class="fa fa-github-square"></span><span>github</span></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a id="contact-link-youtube" class="contact_link" href="https://www.youtube.com/channel/UChQZm_aavTsiA7Dxq3zjsLg%20">
+  <span class="fa fa-youtube-square"></span><span>youtube</span></a>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+  
+
+</header>
+
+<hr>
+
+<article id="main-content" class="container main_content single">
+  <header class="container hat">
+  <h1>Rendering the Buddhabrot with WebGL
+</h1>
+
+  <div class="metas">
+<time datetime="2018-04-27">27 Apr, 2018</time>
+
+
+  
+  &middot; Read in about 6 min
+  &middot; (1113 Words)
+  <br>
+  
+
+
+</div>
+
+</header>
+
+  <div class="container content">
+  
+
+<h2 id="introduction">Introduction</h2>
+
+<p>I finally decided to make my first web application. Being a c++ guy I want to use this little project to learn js,html etc,
+so if you encounter some stupid/noobish js usage/style pls let me know so I can improve.</p>
+
+<p>If you don&rsquo;t know  what a Buddhbrot is I will give you a overview:
+The Buddhabrot is really cool mathematical object which somewhat looks like a Buddha:</p>
+
+<p><img src ="/media/buddha1.PNG" style= " max-width:100%;,height:auto; margin:auto;" ></img></p>
+
+<h3 id="live-demo-https-caradhrass-github-io-webgl-buddhabrot"><a href="https://caradhrass.github.io/WebGL-Buddhabrot/">live demo</a></h3>
+
+<p>To understand how a Buddhabrot is created one must first understand the famous Mandelbrot and the complex dynamic behind it.
+Both have their source in the complex recursive formula  Z₁-&gt;Z₀+C.
+This harmless looking Formula results in some super complex behavior.
+Each starting point C has a unique orbit of Z values, here is the orbit for c = 0.5i:</p>
+
+<p><img src ="/media/orbit.PNG" style= " max-width:50%;,height:auto; margin:auto;" ></img></p>
+
+<p>As you can see the the Orbit of 0.5i is spiral-shaped and tends to a fixed point, the later is true for all orbits with a
+maximal length of 2. All orbits which at some point have a Z with |Z|&gt;2 will go off to infinity.
+The Mandelbrot set now is the set of those C values that don&rsquo;t tend to infinity and instead orbit around some fixed point.</p>
+
+<p>The Buddhabrot now isn&rsquo;t a set it&rsquo;s a probability map.
+This map shows the probability for a point being crossed by the orbit of a point that is not in the Mandelbrot set.
+Bright parts have a higher probability of being in the path of a orbit then darker parts.</p>
+
+<h2 id="implementation">Implementation</h2>
+
+<p>I decided to use WebGL2 because I already know CoreGl and WebCL seems pretty dead. This created some inconveniences like the lack of compute shader and random memory access.</p>
+
+<p>First I used GL&rsquo;s transform feedback to generate some random points outside of the Mandelbrot set. To generate
+random points i first used the famous glsl random one liner:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-glsl" data-lang="glsl"> 
+<span style="color:#66d9ef">float</span> rand(<span style="color:#66d9ef">vec2</span> co,<span style="color:#66d9ef">float</span> seed){
+    <span style="color:#66d9ef">return</span> fract(sin(dot(co.xy<span style="color:#f92672">*</span>seed ,<span style="color:#66d9ef">vec2</span>(<span style="color:#ae81ff">12.9898</span>,<span style="color:#ae81ff">78.233</span>))) <span style="color:#f92672">*</span> <span style="color:#ae81ff">43758.5453</span>);
+}</code></pre></div>
+With a glVertexID plus a uniform random number as seed,
+but I later changed to xorshift because it has a better distribution. The seed-state is stored in a simple transform feedback loop.</p>
+
+<p><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-glsl" data-lang="glsl">layout(location <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)<span style="color:#66d9ef">in</span> uint seed; 
+uint lseed;
+flat <span style="color:#66d9ef">out</span> uint nextSeed;
+<span style="color:#66d9ef">float</span> rand01()
+{
+    uint x <span style="color:#f92672">=</span> lseed;
+    x <span style="color:#f92672">^=</span> x <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">13</span>;
+	x <span style="color:#f92672">^=</span> x <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">17</span>;
+	x <span style="color:#f92672">^=</span> x <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">5</span>;
+    lseed <span style="color:#f92672">=</span> x;
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">float</span>(x)<span style="color:#f92672">*</span>(<span style="color:#ae81ff">1.0</span><span style="color:#f92672">/</span><span style="color:#ae81ff">4294967295.0</span>);
+}
+.......
+<span style="color:#66d9ef">void</span> main()
+{
+    lseed <span style="color:#f92672">=</span>seed;
+    .......
+    nextSeed <span style="color:#f92672">=</span> lseed;
+
+}</code></pre></div>
+To check weather or not a point is inside the set I used a pre rendered Mandelbrot mask texture with all pixels inside the set being black. Then I generated random points as long as the corresponding texture
+fetch returned 0.
+The mask texture:
+<img src ="/media/mmask.PNG" style= " max-width:100%;height:auto; margin:auto;" ></img>
+Here <code>orbitSampleEnd</code> and <code>orbitSampleBegin</code> are the lower and upper bounds of the Mandelbrot mask in world coords.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-glsl" data-lang="glsl"><span style="color:#66d9ef">vec2</span> pointOusideM()
+{
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>sampleCount;i<span style="color:#f92672">++</span>)
+    {   
+        <span style="color:#66d9ef">vec2</span> uv <span style="color:#f92672">=</span>rand2();
+        <span style="color:#66d9ef">float</span> I <span style="color:#f92672">=</span> texture(mandelmask,uv).r;
+        <span style="color:#66d9ef">if</span>(I<span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>)
+        {   
+             <span style="color:#75715e">//Transform to world space  </span>
+            <span style="color:#66d9ef">return</span> uv<span style="color:#f92672">*</span>(orbitSampleEnd<span style="color:#f92672">-</span>orbitSampleBegin)<span style="color:#f92672">+</span>orbitSampleBegin;
+             
+        }
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">vec2</span>(<span style="color:#ae81ff">10000</span>,<span style="color:#ae81ff">10000</span>);
+}</code></pre></div>
+This removes some precision but also yields a great deal of control and speed. The generated points a written via transform feedback in two different buffers.
+Next the a orbits are drawn and traced as points ,with additive blending to a floating point texture transform feedback to used to
+move the orbits via  Z₁-&gt;Z₀+C. How many iterations this is done controls the level of detail.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-glsl" data-lang="glsl">layout(location <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)<span style="color:#66d9ef">in</span> <span style="color:#66d9ef">vec2</span> orbitPosition;
+layout(location <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)<span style="color:#66d9ef">in</span> <span style="color:#66d9ef">vec2</span> orbitSource;
+
+<span style="color:#66d9ef">out</span> <span style="color:#66d9ef">vec2</span> nextOrbitPosition;
+
+<span style="color:#66d9ef">uniform</span> mat3 viewMatrix;
+<span style="color:#66d9ef">vec2</span> cpow2(<span style="color:#66d9ef">vec2</span> z)
+{
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">vec2</span>(z.x<span style="color:#f92672">*</span>z.x<span style="color:#f92672">-</span>z.y<span style="color:#f92672">*</span>z.y,<span style="color:#ae81ff">2.0</span><span style="color:#f92672">*</span>z.x<span style="color:#f92672">*</span>z.y);
+}
+
+<span style="color:#66d9ef">void</span> main(){
+    .....
+    nextOrbitPosition <span style="color:#f92672">=</span> cpow2(orbitPosition)<span style="color:#f92672">+</span>orbitSource;
+    gl_Position <span style="color:#f92672">=</span> <span style="color:#66d9ef">vec4</span>( (viewMatrix<span style="color:#f92672">*</span><span style="color:#66d9ef">vec3</span>(nextOrbitPosition,<span style="color:#ae81ff">1</span>)).xy ,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>);
+}</code></pre></div></p>
+
+<p>This creates a density map where points with high values are often visited by orbits.
+The last step is the normalization of the density map this is also done on the GPU with a cheap maximum reduction shader and two ping pong framebuffer to find the maximum value.</p>
+
+<h2 id="importance-sampling">Importance Sampling</h2>
+
+<p>While the above works it&rsquo;s way to slow and laggy. A great method to improve overall performance is to pick orbit starting points based on how long
+they will stay in the view range. To accomplish this a modified my Mandelbrot mask texture to indicate not only if point is outside the Mandelbrot set but also how &laquo;good&raquo;
+a point is.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-glsl" data-lang="glsl"><span style="color:#66d9ef">float</span> budhhaImportance()
+{
+    <span style="color:#66d9ef">vec2</span> p <span style="color:#f92672">=</span> uv<span style="color:#f92672">*</span>(orbitSampleEnd<span style="color:#f92672">-</span>orbitSampleBegin)<span style="color:#f92672">+</span>orbitSampleBegin;
+    <span style="color:#66d9ef">vec2</span> z <span style="color:#f92672">=</span> p;
+    <span style="color:#66d9ef">bool</span> valid <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+    <span style="color:#66d9ef">float</span> fitness <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span>;
+    
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i;i<span style="color:#f92672">&lt;</span>iterationCount;i<span style="color:#f92672">++</span>)
+    {
+       
+        z <span style="color:#f92672">=</span> cpow2(z)<span style="color:#f92672">+</span>p;
+        <span style="color:#66d9ef">vec2</span> k <span style="color:#f92672">=</span> (viewMatrix<span style="color:#f92672">*</span><span style="color:#66d9ef">vec3</span>(z,<span style="color:#ae81ff">1</span>)).xy;<span style="color:#75715e">//View space</span>
+        <span style="color:#66d9ef">if</span>(abs(k.x)<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">1.0</span> <span style="color:#f92672">&amp;&amp;</span> abs(k.y)<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">1.0</span>)<span style="color:#75715e">//Is in view range</span>
+        {
+            fitness<span style="color:#f92672">++</span>;
+        
+         <span style="color:#66d9ef">float</span> d <span style="color:#f92672">=</span>dot(z,z);
+        <span style="color:#66d9ef">if</span>(d<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">4.0</span>)
+        {
+            valid <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+        }
+        <span style="color:#66d9ef">if</span>(d <span style="color:#f92672">&gt;</span><span style="color:#ae81ff">12.0</span>)
+        {
+            <span style="color:#66d9ef">break</span>;
+        }
+    }
+    <span style="color:#66d9ef">if</span>(valid){
+        <span style="color:#66d9ef">return</span> sqrt(fitness)<span style="color:#f92672">/</span>sqrt(<span style="color:#66d9ef">float</span>(iterationCount));<span style="color:#75715e">//sqrt looks nicer</span>
+    }
+    <span style="color:#66d9ef">else</span>
+    {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0.0</span>;
+    
+}</code></pre></div>
+Each iteration <code>fitness</code> is increased if <code>z</code> is in view range and then sqrt normalized. Here is what is looks like:
+<img src ="/media/buddhaimportance.PNG" style= " max-width:100%;height:auto; margin:auto;" ></img></p>
+
+<p>Looks pretty neat and show&rsquo;s that the orbits come from the border of the Mandelbrot set.
+Next I modified my orbit generation shader to evaluate a points importance.</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-glsl" data-lang="glsl"><span style="color:#66d9ef">vec2</span> pointOusideM()
+{
+
+    <span style="color:#66d9ef">vec2</span> bestP <span style="color:#f92672">=</span> <span style="color:#66d9ef">vec2</span>(<span style="color:#ae81ff">0</span>);
+    <span style="color:#66d9ef">float</span> bestI <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span>;
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>importanceSampleCount;i<span style="color:#f92672">++</span>)
+    {   
+        <span style="color:#66d9ef">vec2</span> uv <span style="color:#f92672">=</span>rand2();
+        <span style="color:#66d9ef">float</span> I <span style="color:#f92672">=</span> texture(importanceMap,uv).r;<span style="color:#75715e">//importance</span>
+        <span style="color:#66d9ef">if</span>(I<span style="color:#f92672">&gt;</span> bestI)
+        {   
+            bestP <span style="color:#f92672">=</span> uv<span style="color:#f92672">*</span>(orbitSampleEnd<span style="color:#f92672">-</span>orbitSampleBegin)<span style="color:#f92672">+</span>orbitSampleBegin;
+            bestI <span style="color:#f92672">=</span> I;
+        }
+    }
+    <span style="color:#66d9ef">return</span> bestP;
+}</code></pre></div>
+
+<p>These modifications make rendering almost real time on my GTX 960m on a good desktop GPU it should be.
+GPU usage is also quiet good although I only checked it in Task manager.
+To further optimize the whole thing measuring would be a good idea because I am not sure what&rsquo;s the main bottleneck. One good thing to try how ever would be to switch from float to half to reduce memory throughput.</p>
+
+<h2 id="the-js-side-of-things">The Js side of things</h2>
+
+<p>This was my first Java Script experience so I didn&rsquo;t follow a specific style and improved while coding one of the first things I created was view matrix so the user can
+zoom around with smooth transitions. I didn&rsquo;t know about prototypes thus its implemented like a c++ class.Later I discovered prototypes and the awesome js library community. So far js feels nice but a little washy
+Anyway the actual Buddhabrot js class is really simple all GL objects a created and managed with twgl a really snazzy WebGL wrapper. There a two framebuffers one for the importance map and one for the orbit density then two buffers each for current orbit position,source,seed  to enable a transform feedback loop. The importance map renderer and the reduction normalizer have their own separate classes.
+The gui was the hardest part until I discoved dat.gui which made everything easy and modular. If you are interested in the full yes implementation you can check it on <a href="https://github.com/Caradhrass/WebGL-Buddhabrot">git</a>.</p>
+
+<h2 id="false-coloring">False coloring</h2>
+
+<p>The finial image is created by stacking multiple Buddhabrots with different colors and iteration counts again utilizing additive blending.
+Results: <a href="https://caradhrass.github.io/WebGL-Buddhabrot/">https://caradhrass.github.io/WebGL-Buddhabrot/</a></p>
+
+</div>
+
+
+  <footer class="container">
+  <div class="container navigation no-print">
+  <h2>Navigation</h2>
+  
+  
+
+
+</div>
+
+  <div class="container comments">
+  <h2>Comments</h2>
+  
+
+</div>
+
+</footer>
+
+</article>
+      <footer id="main-footer" class="container main_footer">
+  
+
+  <div class="container nav foot no-print">
+  
+
+  <a class="toplink" href="#">back to top</a>
+
+</div>
+
+  <div class="container credits">
+  
+<div class="container footline">
+  
+
+</div>
+
+
+  
+<div class="container copyright">
+  
+  &copy; 2018 Jakob Loth
+
+
+</div>
+
+
+</div>
+
+</footer>
+
+    </main>
+    
+
+
+
+<script src="https://caradhrass.github.io/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+    
+  </body>
+</html>
+
