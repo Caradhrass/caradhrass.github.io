@@ -348,9 +348,9 @@ To further optimize the whole thing measuring would be a good idea because I am 
 
 <h2 id="the-js-side-of-things">The Js side of things</h2>
 
-<p>One of the first things I created was view matrix so the user can
-zoom around with smooth transitions. The actual Buddhabrot js class is really simple all GL objects a created and managed with twgl a really good WebGL wrapper. There are two framebuffers one for the importance map and one for the orbit density then two buffers each for current orbit position,source,seed  to enable a transform feedback loop. The importance map renderer and the reduction normalizer have their own separate classes.
-The gui was the hardest part until I discovered dat.gui which made everything easy and modular. If you are interested in the full yes implementation you can check it on <a href="https://github.com/Caradhrass/WebGL-Buddhabrot">git</a>.</p>
+<p>One of the first things I created was a view matrix so the user can
+zoom around with smooth transitions. The actual Buddhabrot js class is really simple all GL objects are created and managed with twgl a really good WebGL wrapper. There are two framebuffers one for the importance map and one for the orbit density then two buffers each for current orbit position,source,seed  to enable a transform feedback loop. The importance map renderer and the reduction normalizer have their own separate classes.
+The gui was the hardest part until I discovered dat.gui which made everything easy and modular. If you are interested in the full implementation you can check it on <a href="https://github.com/Caradhrass/WebGL-Buddhabrot">git</a>.</p>
 
 <h2 id="false-coloring">False coloring</h2>
 
